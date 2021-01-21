@@ -11,7 +11,7 @@ import scipy.integrate as si    # to integrate numerically the equations of moti
 import scipy.optimize as so     # for the bisection algorithm
 
 # change to qt for plots in a new window
-get_ipython().run_line_magic('matplotlib', 'inline')
+#get_ipython().run_line_magic('matplotlib', 'inline')
 
 
 # In[3]:
@@ -209,4 +209,5 @@ plt.plot(distances, V_mags)
 plt.grid(1)
 plt.xlabel("distance [m]")
 plt.ylabel("|V| [m/s]")
+plt.show()
 
