@@ -13,21 +13,28 @@ class Spring:
         return 0.05*self.series_qty
 
 class Ball:
-    def __init__(self, mass_ball, mass_carrier, diameter):
+    def __init__(self, mass_ball, mass_carrier, diameter, cd, init_xpos, init_ypos):
         self.mass_ball=mass_ball
         self.mass_carrier=mass_carrier
         self.diameter=diameter
+        self.cd=cd
+        self.init_xpos=init_xpos
+        self.init_ypos=init_ypos
 
     def totalmass(self):
         return self.mass_ball+self.mass_carrier
 
+    def ref_area(self):
+        return ((self.diameter/2)**2)*np.pi
+
 
 class LaunchConditions:
-    def __init__(self, angle_in_deg, g_accel, frict_coef, init_vel):
+    def __init__(self, angle_in_deg, g_accel, frict_coef, init_vel, target_ypos):
         self.angle_in_deg=angle_in_deg
         self.g_accel=g_accel
         self.frict_coef=frict_coef
         self.init_vel=init_vel
+        self.target_ypos=target_ypos
 
     def angle_in_rad(self):
         return self.angle_in_deg/180*np.pi
@@ -39,6 +46,6 @@ class Air:
 
 
 Spring=Spring(1000, 0.05,2,3,0.2,0.1,4)
-Ball=Ball(0.050,0.025, 0.040)
-LaunchConditions=LaunchConditions(50,9.81,0.5, 0.0)
+Ball=Ball(0.050,0.025, 0.040, 0.47, 0,0)
+LaunchConditions=LaunchConditions(50,9.81,0.5, 0.0, 0)
 Air=Air(1.204, 1.825e-5)

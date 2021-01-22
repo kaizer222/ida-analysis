@@ -30,7 +30,7 @@ k = 1000/Ns*Np # N/m
 theta = 50/180*np.pi # rad
 # Gravitational acceleration
 g = 9.81 # m/s^2
-# Friction factor
+# Friction factor????
 f = 0.5 # N/(m/s)
 # Spring position
 xs = 0.2 # m
