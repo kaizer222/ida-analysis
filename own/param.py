@@ -45,7 +45,7 @@ class Air:
         self.dynamic_visc=dynamic_visc
 
 
-Spring=Spring(1000, 0.05,2,3,0.2,0.1,4)
+Spring=Spring(1000, 0.05,1,1,0.2,0.1,4)
 Ball=Ball(0.050,0.025, 0.040, 0.47, 0,0)
 LaunchConditions=LaunchConditions(50,9.81,0.5, 0.0, 0)
 Air=Air(1.204, 1.825e-5)

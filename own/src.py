@@ -118,7 +118,7 @@ def maxVelocity(t_end):
 plt.clf()
 muzzle_vel=[]
 plt.clf()
-for s0 in np.array([0.01, 0.02, 0.03, 0.04])*prm.Spring.series_qty:
+for s0 in np.array([0.05, 0.06, 0.07, 0.08])*prm.Spring.series_qty:
     y0 = [s0, prm.LaunchConditions.init_vel]
 
     t_end = so.newton(maxVelocity, 0.013)
@@ -131,7 +131,8 @@ for s0 in np.array([0.01, 0.02, 0.03, 0.04])*prm.Spring.series_qty:
     v = sol[:,1]
     muzzle_vel.append(v[-1])
     plt.plot(t, v, label='s0=%0.2f m' % s0)
-    
+
+print (muzzle_vel)
 plt.legend()
 plt.xlabel('time (s)')
 plt.ylabel('Velocity (m/s)')
