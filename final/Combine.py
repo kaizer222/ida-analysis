@@ -305,7 +305,7 @@ xtotal.append(x9)
 xtotal.append(x10)
 '''
 #get possible angle and compression from a given distance
-input_distance=3
+input_distance=8
 def expected_distance(theta,v):
     y=distance(v,theta)
     return y-input_distance
@@ -314,7 +314,7 @@ sol=[]
 for v_1 in V_mags:
     try:
         out_data=so.newton(expected_distance,30,args=(v_1,))
-        out_txt='Compression of '+str(round(v_1,2))+' @ '+str(out_data)
+        out_txt='Compression of '+str(round(v_1,2))+' @ '+str(round(out_data,2))
         sol.append(out_txt)
     except:
         err_txt='compression of '+str(round(v_1,2))+': failed to reach distance'
