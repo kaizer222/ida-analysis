@@ -259,15 +259,27 @@ def distance(V_mag, theta):
 # initial velocities
 V_mags = y
 angle = np.linspace(0, 90, 91)
+plt.clf()
 
+#initialise
 xtotal=[]
+intersect_points=[]#
+count=1
+'''
 for v in V_mags:
-    print ('Started outer loop',v)
+    print ('Run', count, 'of', len(V_mags))
     x=[]
     for theta in angle:
         c = distance(v, theta)
         x.append(c)
-    xtotal.append(x)        
+    xtotal.append(x)
+    plt.plot(angle, x, label='Compression distance'+str(v))
+    count+=1
+plt.grid(1)
+plt.xlabel('Angle')
+plt.ylabel('Distance (m)')
+plt.show()
+'''
 '''
 x1 = x[0:10]
 x2 = x[10:20]
@@ -292,15 +304,34 @@ xtotal.append(x8)
 xtotal.append(x9)
 xtotal.append(x10)
 '''
-    #converts x4,x7,x10 lists as Pandas dataframe, and save as csv.
+#get possible angle and compression from a given distance
+input_distance=3
+def expected_distance(theta,v):
+    y=distance(v,theta)
+    return y-input_distance
 
+sol=[]
+for v_1 in V_mags:
+    try:
+        out_data=so.newton(expected_distance,30,args=(v_1,))
+        out_txt='Compression of '+str(round(v_1,2))+' @ '+str(out_data)
+        sol.append(out_txt)
+    except:
+        err_txt='compression of '+str(round(v_1,2))+': failed to reach distance'
+        sol.append(err_txt)
+
+print (sol)
+#converts to double decimal and outputs to a .csv file
+'''
+for i in range(len(xtotal)):
+    xtotal[i]=[round(num,2) for num in xtotal[i]]
 output_dict={'Angle':angle,'45mm':xtotal[0],'60mm':xtotal[1],'75mm':xtotal[2]}
-output_dict=pd.DataFrame(output_dict)
-output_dict.to_csv('outputtable.csv')
+pd.to_csv(output_dict)
+'''
 # In[4]:
 
+'''
 
-plt.clf()
 plt.figure(4)
 
 plt.plot(angle, xtotal[0], label='v(45mm) = %0.2f m/s' % V_mags[0])
@@ -315,7 +346,7 @@ plt.grid(1)
 plt.xlabel("angle [degrees]")
 plt.ylabel("distance [m]")
 plt.show()
-
+'''
 # In[ ]:
 
 
